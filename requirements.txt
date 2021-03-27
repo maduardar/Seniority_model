@@ -1,2 +1,5 @@
 Flask~=1.1.2
 gunicorn
+embedding-as-service
+torch~=1.8.1
+numpy~=1.16.4

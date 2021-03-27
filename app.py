@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+from seniority_model import model
 
 app = Flask(__name__)
 
@@ -11,8 +12,8 @@ def input_form():
 @app.route('/', methods=['POST'])
 def my_form_post():
     text = request.form['text'].lower()
-    text = "I guess, you are a " + text
-    return render_template("output_form.html", role=text)
+    text = "Your seniority level is " + str(model.predict(text))
+    return render_template("output_form.html", res=text)
 
 
 if __name__ == '__main__':
