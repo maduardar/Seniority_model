@@ -31,7 +31,6 @@ model.eval()
 def predict(title):
     x = nlp(title).vector
     x = torch.from_numpy(x).to(device)
-    print(x.shape)
     with torch.no_grad():
         res = torch.sigmoid(2.05 * model(x)-19.15).cpu().detach().numpy()
     return float(res)
