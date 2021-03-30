@@ -12,7 +12,7 @@ def input_form():
 @app.route('/', methods=['POST'])
 def my_form_post():
     text = request.form['text'].lower()
-    text = "Your seniority level is " + str(model.predict(text))[:4]
+    text = "Your seniority level is %.2f" % model.predict(text)
     return render_template("output_form.html", res=text)
 
 
