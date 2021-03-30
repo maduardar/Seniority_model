@@ -1,33 +1,37 @@
 import torch
 import torch.nn as nn
-import numpy as np
-from embedding_as_service.text.encode import Encoder
+import spacy
 
-EMB_DIM = 300
-MAX_LEN = 32  # Максимальное количество слов, из которого может состоять название должности (оставим запас)
+EMB_DIM = 96
+nlp = spacy.load("en_core_web_sm")
 
-en = Encoder(embedding='fasttext', model='wiki_news_300_sub', max_seq_length=MAX_LEN)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = torch.load("model.pt")
-model.eval()
 
 
 class Scorer(nn.Module):
     def __init__(self, emb_dim=EMB_DIM):
         super(Scorer, self).__init__()
         self.score = nn.Sequential(
-            nn.Linear(emb_dim, 128),
-            nn.Sigmoid(),
-            nn.Linear(128, 1)
+            nn.Linear(emb_dim, 64),
+            nn.ReLU(),
+            nn.Linear(64, 32),
+            nn.ReLU(),
+            nn.Linear(32, 1)
         )
 
     def forward(self, input):
         return self.score(input)
 
 
-def predict(x, scorer=model):
-    x = en.encode(texts=x, pooling='reduce_mean')
-    x = np.float32(x)
+model = Scorer(EMB_DIM).to(device)
+model.load_state_dict(torch.load("model_spacy.pt", map_location=device))
+model.eval()
+
+
+def predict(title):
+    x = nlp(title).vector
     x = torch.from_numpy(x).to(device)
-    score = scorer(x).cpu().detach().numpy()
-    return score
+    print(x.shape)
+    with torch.no_grad():
+        res = torch.sigmoid(2.05 * model(x)-19.15).cpu().detach().numpy()
+    return float(res)
