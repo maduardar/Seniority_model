@@ -1,9 +1,10 @@
 import torch
 import torch.nn as nn
-import spacy
+from embedding_as_service.text.encode import Encoder
 
-EMB_DIM = 96
-nlp = spacy.load("en_core_web_sm")
+EMB_DIM = 300
+SEQ_LEN = 10
+MAX_LEN = 32
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -12,11 +13,9 @@ class Scorer(nn.Module):
     def __init__(self, emb_dim=EMB_DIM):
         super(Scorer, self).__init__()
         self.score = nn.Sequential(
-            nn.Linear(emb_dim, 64),
+            nn.Linear(emb_dim, 128),
             nn.ReLU(),
-            nn.Linear(64, 32),
-            nn.ReLU(),
-            nn.Linear(32, 1)
+            nn.Linear(128, 1)
         )
 
     def forward(self, input):
@@ -24,13 +23,15 @@ class Scorer(nn.Module):
 
 
 model = Scorer(EMB_DIM).to(device)
-model.load_state_dict(torch.load("model_spacy.pt", map_location=device))
+model.load_state_dict(torch.load("model_fasttext.pt", map_location=device))
 model.eval()
 
+en = Encoder(embedding='fasttext', model='wiki_news_300_sub', max_seq_length=MAX_LEN)
 
-def predict(title):
-    x = nlp(title).vector
+
+def predict(titles):
+    x = en.encode(texts=titles, pooling='reduce_mean').astype('float32')
     x = torch.from_numpy(x).to(device)
     with torch.no_grad():
-        res = torch.sigmoid(2.05 * model(x)-19.15).cpu().detach().numpy()
-    return res[0]
+        res = model(x)
+    return res.cpu().detach().numpy()
