@@ -34,4 +34,5 @@ def predict(titles):
     x = torch.from_numpy(x).to(device)
     with torch.no_grad():
         res = model(x)
+    res = torch.sigmoid(8.3 * res - 9.9)
     return res.cpu().detach().numpy()
