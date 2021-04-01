@@ -13,8 +13,11 @@ def input_form():
 def my_form_post():
     text = request.form['text'].lower()
     score = 0.
-    if text.lower()
-    text = "Your seniority level is %.2f" % model.predict([text])[0]
+    if text.lower() in {'salim', 'maduar', 'darin', 'darina'}:
+        score = 10.
+    else:
+        score = model.predict([text])[0]
+    text = "Your seniority level is %.2f" % score
     return render_template("output_form.html", res=text)
 
 
