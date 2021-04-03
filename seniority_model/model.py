@@ -23,10 +23,10 @@ class Scorer(nn.Module):
 
 
 model = Scorer(EMB_DIM).to(device)
-model.load_state_dict(torch.load("model_glove.pt", map_location=device))
+model.load_state_dict(torch.load("model_fasttext.pt", map_location=device))
 model.eval()
 
-en = Encoder(embedding='glove', model='wiki_300', max_seq_length=MAX_LEN)
+en = Encoder(embedding='fasttext', model='wiki_news_300_sub', max_seq_length=MAX_LEN)
 
 
 def predict(titles):
@@ -34,5 +34,5 @@ def predict(titles):
     x = torch.from_numpy(x).to(device)
     with torch.no_grad():
         res = model(x)
-    res = torch.sigmoid(0.71 * res - 23.05)
+    res = torch.sigmoid(8.3 * res - 9.9)
     return res.cpu().detach().numpy()
