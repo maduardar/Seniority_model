@@ -14,7 +14,6 @@ def input_form():
 @app.route('/', methods=['POST'])
 def my_form_post():
     text = request.form['text'].lower()
-    score = 0
     if text.lower() in {'salim', 'maduar', 'darin', 'darina'}:
         score = 100
     else:
