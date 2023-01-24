@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70b90809-ef78-4eab-9b23-4a8df05112ca" name="Default Changelist" comment="updated requirements">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -247,7 +245,7 @@
       <workItem from="1674470152995" duration="1918000" />
       <workItem from="1674482657931" duration="1363000" />
       <workItem from="1674484902401" duration="1799000" />
-      <workItem from="1674502569650" duration="4261000" />
+      <workItem from="1674502569650" duration="4468000" />
     </task>
     <task id="LOCAL-00001" summary="updated requirements">
       <created>1674511889572</created>
