@@ -15,7 +15,7 @@ def input_form():
 def my_form_post():
     text = request.form['text'].lower()
     if text.lower() in {'salim', 'maduar', 'darin', 'darina'}:
-        score = 100pip
+        score = 100
     else:
         score = model.predict([text])[0]
     text = "Your seniority level is %d" % score
