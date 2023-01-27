@@ -42,9 +42,9 @@ tensorboard==2.11.2
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
 tensorflow-cpu==2.7.2
-tensorflow-estimator==2.7.0
-tensorflow-hub==0.12.0
-tensorflow-io-gcs-filesystem==0.30.0
+tensorflow-cpu-estimator==2.7.0
+tensorflow-cpu-hub==0.12.0
+tensorflow-cpu-io-gcs-filesystem==0.30.0
 termcolor==2.2.0
 tqdm==4.32.2
 torch==1.13.0+cpu
