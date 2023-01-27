@@ -1,3 +1,4 @@
+-f https://download.pytorch.org/whl/torch_stable.html
 absl-py==1.4.0
 astunparse==1.6.3
 bert-tensorflow==1.0.4
@@ -13,6 +14,7 @@ google-auth==2.16.0
 google-auth-oauthlib==0.4.6
 google-pasta==0.2.0
 grpcio==1.51.1
+gunicorn==20.1.0
 h5py==3.8.0
 idna==2.8
 importlib-metadata==6.0.0
@@ -39,13 +41,13 @@ smart-open==6.2.0
 tensorboard==2.11.2
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
-tensorflow==2.7.2
+tensorflow-cpu==2.7.2
 tensorflow-estimator==2.7.0
 tensorflow-hub==0.12.0
 tensorflow-io-gcs-filesystem==0.30.0
 termcolor==2.2.0
 tqdm==4.32.2
-torch==1.13.0 -f https://download.pytorch.org/whl/torch_stable.html
+torch==1.13.0+cpu
 typing-extensions==4.4.0
 urllib3==1.24.3
 Werkzeug==2.2.2
