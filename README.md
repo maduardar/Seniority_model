@@ -1,6 +1,8 @@
 # Seniority_model
 
-Used unsupervised learning techniques to predict the level of seniority.
+Flas app to predict the level of seniority using unsupervised machine learning techniques.
+
+
 * Scrapped publicly available employment history data
 * Processed the data using several word embeddings, e.g. Spacy, FastText, GloVe and BERT 
 * Implemented different ranking models using PyTorch: RankNet, ListNet and my own approaches 
